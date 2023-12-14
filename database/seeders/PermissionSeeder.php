@@ -22,21 +22,21 @@ class PermissionSeeder extends Seeder
         // create permissions
         Permission::create(['name' => 'dashboard']);
         Permission::create(['name' => 'masterdata']);
-        Permission::create(['name' => 'request reimburstment']);
-        Permission::create(['name' => 'approval reimburstment']);
+        Permission::create(['name' => 'request reimbursement']);
+        Permission::create(['name' => 'approval reimbursement']);
         Permission::create(['name' => 'report']);
         Permission::create(['name' => 'user management']);
 
          //create roles and assign existing permissions
          $user_role = Role::create(['name' => 'user']);
          $user_role->givePermissionTo('dashboard');
-         $user_role->givePermissionTo('request reimburstment');
+         $user_role->givePermissionTo('request reimbursement');
          $user_role->givePermissionTo('report');
  
          $admin_role = Role::create(['name' => 'admin']);
          $admin_role->givePermissionTo('dashboard');
          $admin_role->givePermissionTo('masterdata');
-         $admin_role->givePermissionTo('approval reimburstment');
+         $admin_role->givePermissionTo('approval reimbursement');
          $admin_role->givePermissionTo('report');
  
          $superadminRole = Role::create(['name' => 'super-admin']);

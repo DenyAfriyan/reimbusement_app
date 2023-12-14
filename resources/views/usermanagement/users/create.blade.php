@@ -47,7 +47,7 @@
                       </select>
                     </div>
                     <div class="mb-3">
-                      <label for="departement_id" class="form-label">Role</label>
+                      <label for="departement_id" class="form-label">Departement</label>
                       <select name="departement_id" id="departement_id" class="form-control">
                         @foreach ($departement  as $key => $row)
                         <option value="{{ $row }}">{{ $key }}</option>
@@ -55,7 +55,7 @@
                       </select>
                     </div>
                     <div class="mb-3">
-                      <label for="jabatan_id" class="form-label">Role</label>
+                      <label for="jabatan_id" class="form-label">Jabatan</label>
                       <select name="jabatan_id" id="jabatan_id" class="form-control">
                         @foreach ($jabatan  as $key => $row)
                         <option value="{{ $row }}">{{ $key }}</option>

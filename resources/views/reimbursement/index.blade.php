@@ -4,7 +4,7 @@
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">
-          <a href="{{ route('penerimaan.create') }}" class="btn btn-sm btn-dark float-end m-0"><i class="fas fa-plus"></i> <span>Add {{ $title }}</span></a>
+          <a href="{{ route('reimbursement.create') }}" class="btn btn-sm btn-dark float-end m-0"><i class="fas fa-plus"></i> <span>Add {{ $title }}</span></a>
           <h6 class="fw-bold text-dark">{{ $title }} Table</h6>
         </div>
         <div class="card-body px-0 pt-0 pb-2">
@@ -14,45 +14,29 @@
               </div>
           @endif
           <div class="table-responsive p-4">
-            <table id="penerimaan-table" class="table table-striped table-bordered table-hover" style="width:100%">
+            <table id="reimbursement-table" class="table table-striped table-bordered table-hover" style="width:100%">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Jenis Limbah</th>
-                        <th>Sumber Limbah</th>
-                        <th>Jumlah Limbah Masuk</th>
-                        <th>Tanggal Masuk</th>
-                        <th>Tanggal Maksimal Penyimpanan</th>
+                        <th>Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                  @if (count($penerimaan) > 0) 
-                    @foreach ($penerimaan as $key => $row)
+                  @if (count($reimbursement) > 0) 
+                    @foreach ($reimbursement as $key => $row)
                     <tr>
                       <td class="align-middle text-center" style="width: 10%">
                         <span class="text-dark">{{ $key + 1 }}</span>
                       </td>
                       <td class="align-middle">
-                        <span class="text-dark">{{ $row->jenis_limbah->name }}</span>
-                      </td>
-                      <td class="align-middle">
-                        <span class="text-dark">{{ $row->sumber_limbah->name }}</span>
-                      </td>
-                      <td class="align-middle">
-                        <span class="text-dark">{{ $row->jumlah_limbah_masuk }}</span>
-                      </td>
-                      <td class="align-middle">
-                        <span class="text-dark">{{ date("d-m-Y",strtotime($row->tanggal_masuk)) }}</span>
-                      </td>
-                      <td class="align-middle">
-                        <span class="text-dark">{{ date("d-m-Y",strtotime($row->maksimal_penyimpanan)) }}</span>
+                        <span class="text-dark">{{ $row->name }}</span>
                       </td>
                       <td class="align-middle" style="width: 20%">
-                        <a href="{{ route('penerimaan.edit', ['penerimaan' => $row->id]) }}" class="btn btn-info m-0">
+                        <a href="{{ route('reimbursement.edit', ['reimbursement' => $row->id]) }}" class="btn btn-info m-0">
                           <i class="fa fa-pen"></i>
                         </a>
-                        <form action="{{ route('penerimaan.destroy', $row->id) }}" method="POST" onsubmit="return confirm('Apakah anda yakin?');" style="display: inline-block;">
+                        <form action="{{ route('reimbursement.destroy', $row->id) }}" method="POST" onsubmit="return confirm('Apakah anda yakin?');" style="display: inline-block;">
                           <input type="hidden" name="_method" value="DELETE">
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           {{-- <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></span></button> --}}
@@ -76,7 +60,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(function(){
-        $('#penerimaan-table').dataTable({
+        $('#reimbursement-table').dataTable({
             language: {
                 'paginate': {
                 'previous': '<i class="fa fa-toggle-left"></i>',

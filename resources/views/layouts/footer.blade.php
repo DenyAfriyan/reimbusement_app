@@ -6,7 +6,7 @@
             © <script>
               document.write(new Date().getFullYear())
             </script>,
-            Made by Deny Afriyan
+            Made by Rifaldi
           </div>
         </div>
         {{-- <div class="col-lg-6">

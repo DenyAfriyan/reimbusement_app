@@ -40,7 +40,7 @@ background-repeat: no-repeat;height: 100vh;">
             <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
               <div class="card card-plain mt-8">
                 <div class="card-header pb-0 text-left bg-transparent text-center">
-                  <h4 class="mb-3 text-center text-gradient text-dark">Reimburstment App</h4>
+                  <h4 class="mb-3 text-center text-gradient text-dark">Reimbursement App</h4>
                   <img src="{{ asset('assets/soft-ui-dashboard-main/assets/img/logo-bnn.png') }}" class="img-fluid rounded mb-3" width="150px" alt="">
                   @if($errors->any())
                       <div class="alert alert-danger p-1">

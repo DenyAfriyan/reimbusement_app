@@ -16,12 +16,12 @@
                           </ul>
                       </div>
                   @endif
-                <form action="{{ route('sumber-limbah.update' , ['sumber_limbah' => $sumber_limbah->id]) }}" method="POST">
+                <form action="{{ route('reimbursement.update' , ['reimbursement' => $reimbursement->id]) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
                       <label for="name" class="form-label">Name</label>
-                      <input type="text" class="form-control" id="name" name="name" value="{{ $sumber_limbah->name }}">
+                      <input type="text" class="form-control" id="name" name="name" value="{{ $reimbursement->name }}">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

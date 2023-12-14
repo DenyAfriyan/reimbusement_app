@@ -9,6 +9,7 @@ use App\Http\Controllers\MasterData\KategoriPengeluaranController;
 use App\Http\Controllers\MasterData\MetodePembayaranController;
 use App\Http\Controllers\MasterData\SumberLimbahController;
 use App\Http\Controllers\MasterData\VendorController;
+use App\Http\Controllers\ReimbursementController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Transaksi\PermintaanPengambilanController;
 use App\Http\Controllers\Transaksi\PenerimaanController;
@@ -36,6 +37,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('master-data/jabatan',JabatanController::class);
     Route::resource('master-data/kategori-pengeluaran',KategoriPengeluaranController::class);
     Route::resource('master-data/metode-pembayaran',MetodePembayaranController::class);
+
+    //reimbursement
+    Route::resource('reimbursement',ReimbursementController::class);
 
     //users
     Route::resource('user-management/user',UserController::class);
