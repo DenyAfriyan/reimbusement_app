@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\UserManagement;
 
 use App\Http\Controllers\Controller;
+use App\Models\departement;
+use App\Models\jabatan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -18,7 +20,8 @@ class UserController extends Controller
     {
         abort_if(Gate::denies('user management'), 403);
         $title = 'Users';
-        $users = User::all();
+        $users = User::orderBy('id','DESC')->get();
+        
         $dataToView = ['title','users'];
         return view('usermanagement.users.index',compact($dataToView));
     }
@@ -31,7 +34,9 @@ class UserController extends Controller
         abort_if(Gate::denies('user management'), 403);
         $title = 'Users';
         $role = Role::all()->pluck('id','name');
-        $dataToView = ['title','role'];
+        $departement = departement::all()->pluck('id','name');
+        $jabatan = jabatan::all()->pluck('id','name');
+        $dataToView = ['title','role','jabatan','departement'];
         return view('usermanagement.users.create',compact($dataToView));
     }
 
@@ -46,6 +51,10 @@ class UserController extends Controller
             'email' => 'required|unique:users|max:255',
             'password' => 'required|confirmed|min:3',
             'role' => 'required',
+            'no_pegawai' => 'required',
+            'jabatan_id' => 'required',
+            'departement_id' => 'required',
+            'no_hp' => 'required',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -75,7 +84,7 @@ class UserController extends Controller
         abort_if(Gate::denies('user management'), 403);
         $title = 'Users';
         $user = User::findOrFail($id);
-        $dataToView = ['title','user    '];
+        $dataToView = ['title','user'];
         return view('usermanagement.users.edit',compact($dataToView));
         
     }
@@ -88,11 +97,21 @@ class UserController extends Controller
         abort_if(Gate::denies('user management'), 403);
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:users|max:255',
+            'email' => 'required',
+            'no_hp' => 'required',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $users = User::where('id',$id)->update(['name' => $request->input('name')]);
+        $users = User::where('id',$id)->update(
+            [
+                'name' => $request->input('name'),
+                'no_pegawai' => $request->input('no_pegawai'),
+                'no_hp' => $request->input('no_hp'),
+                'alamat' => $request->input('alamat'),
+                'email' => $request->input('email'),
+            ]
+        );
         return redirect('user-management/user')->with('message','Data Berhasil Diupdate');
  
     }

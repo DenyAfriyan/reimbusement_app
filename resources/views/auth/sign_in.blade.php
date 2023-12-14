@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/soft-ui-dashboard-main/assets/img/apple-icon.png') }}">
-  <link rel="icon" type="image/png" href="{{ asset('assets/soft-ui-dashboard-main/assets/img/favicon-fdr.png') }}">
+  <link rel="icon" type="image/png" href="{{ asset('assets/soft-ui-dashboard-main/assets/img/logo-bnn.png') }}">
   <title>
     Waste Application
   </title>
@@ -24,7 +24,7 @@
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 </head>
 
-<body class="" style="background-image: url('{{ asset('assets/soft-ui-dashboard-main/assets/img/tp244-bg1-02.jpg') }}');background-size: cover;
+<body class="" style="background-image: url('{{ asset('assets/soft-ui-dashboard-main/assets/img/rm222batch2-mind-03.jpg') }}');background-size: cover;
 background-repeat: no-repeat;height: 100vh;">
   {{-- <div class="container position-sticky z-index-sticky top-0">
     <div class="row justify-content-center">
@@ -39,9 +39,9 @@ background-repeat: no-repeat;height: 100vh;">
           <div class="row justify-content-center">
             <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
               <div class="card card-plain mt-8">
-                <div class="card-header pb-0 text-left bg-transparent">
-                  <h4 class="mb-3 text-center text-gradient text-dark">Waste Application</h4>
-                  <img src="{{ asset('assets/soft-ui-dashboard-main/assets/img/logo-fdr.jpg') }}" class="img-fluid rounded mb-3" alt="">
+                <div class="card-header pb-0 text-left bg-transparent text-center">
+                  <h4 class="mb-3 text-center text-gradient text-dark">Reimburstment App</h4>
+                  <img src="{{ asset('assets/soft-ui-dashboard-main/assets/img/logo-bnn.png') }}" class="img-fluid rounded mb-3" width="150px" alt="">
                   @if($errors->any())
                       <div class="alert alert-danger p-1">
                           <ul>
@@ -68,7 +68,7 @@ background-repeat: no-repeat;height: 100vh;">
                       <label class="form-check-label" for="rememberMe">Remember me</label>
                     </div>
                     <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-danger w-100 mt-4 mb-0">Sign in</button>
+                      <button type="submit" class="btn bg-gradient-primary w-100 mt-4 mb-0">Sign in</button>
                     </div>
                   </form>
                 </div>

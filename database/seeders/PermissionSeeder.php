@@ -22,43 +22,41 @@ class PermissionSeeder extends Seeder
         // create permissions
         Permission::create(['name' => 'dashboard']);
         Permission::create(['name' => 'masterdata']);
-        Permission::create(['name' => 'permintaan pengambilan']);
-        Permission::create(['name' => 'setujui pengambilan']);
-        Permission::create(['name' => 'transaksi limbah']);
+        Permission::create(['name' => 'request reimburstment']);
+        Permission::create(['name' => 'approval reimburstment']);
         Permission::create(['name' => 'report']);
+        Permission::create(['name' => 'user management']);
 
          //create roles and assign existing permissions
-         $penghasil_limbah_role = Role::create(['name' => 'Penghasil Limbah']);
-         $penghasil_limbah_role->givePermissionTo('dashboard');
-         $penghasil_limbah_role->givePermissionTo('permintaan pengambilan');
-         $penghasil_limbah_role->givePermissionTo('report');
+         $user_role = Role::create(['name' => 'user']);
+         $user_role->givePermissionTo('dashboard');
+         $user_role->givePermissionTo('request reimburstment');
+         $user_role->givePermissionTo('report');
  
-         $waste_control_role = Role::create(['name' => 'Waste Control']);
-         $waste_control_role->givePermissionTo('dashboard');
-         $waste_control_role->givePermissionTo('masterdata');
-         $waste_control_role->givePermissionTo('setujui pengambilan');
-         $waste_control_role->givePermissionTo('transaksi limbah');
-         $waste_control_role->givePermissionTo('report');
+         $admin_role = Role::create(['name' => 'admin']);
+         $admin_role->givePermissionTo('dashboard');
+         $admin_role->givePermissionTo('masterdata');
+         $admin_role->givePermissionTo('approval reimburstment');
+         $admin_role->givePermissionTo('report');
  
          $superadminRole = Role::create(['name' => 'super-admin']);
          // gets all permissions via Gate::before rule
-         // create demo users
-        $user = User::factory()->create([
-            'name' => 'User Penghasil Limbah',
-            'email' => 'user@test.com',
-            'password' => bcrypt('123')
-        ]);
-        $user->assignRole($penghasil_limbah_role);
+   
 
         $user = User::factory()->create([
-            'name' => 'User Waste Control',
+            'name' => 'Admin',
+            'departement_id' => 0,
+            'jabatan_id' => 0,
+            'name' => 'Admin',
             'email' => 'admin@test.com',
             'password' => bcrypt('123')
         ]);
-        $user->assignRole($waste_control_role);
+        $user->assignRole($admin_role);
 
         $user = User::factory()->create([
             'name' => 'Super Admin',
+            'departement_id' => 0,
+            'jabatan_id' => 0,
             'email' => 'superadmin@test.com',
             'password' => bcrypt('123')
         ]);

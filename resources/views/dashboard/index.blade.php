@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="row" style="min-height: 75vh">
-  <div class="row">
+  {{-- <div class="row">
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
       <a href="{{ route('permintaan-pengambilan.index') }}">
       <div class="card">
@@ -135,7 +135,7 @@
         <canvas id="jenis-limbah-chart" width="600" height="400"></canvas>
       </div>
     </div>
-  </div>
+  </div> --}}
 </div>
 @endsection
 @section('custom_script')

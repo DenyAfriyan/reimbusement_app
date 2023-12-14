@@ -2,7 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MasterData\DepartementController;
+use App\Http\Controllers\MasterData\JabatanController;
 use App\Http\Controllers\MasterData\JenisLimbahController;
+use App\Http\Controllers\MasterData\KategoriPengeluaranController;
+use App\Http\Controllers\MasterData\MetodePembayaranController;
 use App\Http\Controllers\MasterData\SumberLimbahController;
 use App\Http\Controllers\MasterData\VendorController;
 use App\Http\Controllers\ReportController;
@@ -10,6 +14,7 @@ use App\Http\Controllers\Transaksi\PermintaanPengambilanController;
 use App\Http\Controllers\Transaksi\PenerimaanController;
 use App\Http\Controllers\Transaksi\PengeluaranController;
 use App\Http\Controllers\UserManagement\UserController;
+use App\Models\KategoriPengeluaran;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -27,16 +32,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class,'index']);
 
     //master data
-    Route::resource('master-data/jenis-limbah',JenisLimbahController::class);
-    Route::resource('master-data/sumber-limbah',SumberLimbahController::class);
-    Route::resource('master-data/vendor',VendorController::class);
-
-    //permintaan pengambilan
-    Route::resource('permintaan-pengambilan',PermintaanPengambilanController::class);
-
-    //transaksi
-    Route::resource('transaksi/penerimaan',PenerimaanController::class);
-    Route::resource('transaksi/pengeluaran',PengeluaranController::class);
+    Route::resource('master-data/departement',DepartementController::class);
+    Route::resource('master-data/jabatan',JabatanController::class);
+    Route::resource('master-data/kategori-pengeluaran',KategoriPengeluaranController::class);
+    Route::resource('master-data/metode-pembayaran',MetodePembayaranController::class);
 
     //users
     Route::resource('user-management/user',UserController::class);

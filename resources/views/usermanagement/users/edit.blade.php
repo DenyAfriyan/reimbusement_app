@@ -20,8 +20,24 @@
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
+                      <label for="no_pegawai" class="form-label">Nomor Pegawai</label>
+                      <input type="number" class="form-control" id="no_pegawai" name="no_pegawai" value="{{ $user->no_pegawai }}">
+                    </div>
+                    <div class="mb-3">
                       <label for="name" class="form-label">Name</label>
                       <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
+                    </div>
+                    <div class="mb-3">
+                      <label for="name" class="form-label">No. Hp</label>
+                      <input type="number" class="form-control" id="no_hp" name="no_hp" value="{{ $user->no_hp }}">
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
+                    </div>
+                    <div class="mb-3">
+                      <label for="alaamt" class="form-label">Alamat</label>
+                      <Textarea class="form-control" id="alamat" name="alamat">{{ $user->alamat }}</Textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
