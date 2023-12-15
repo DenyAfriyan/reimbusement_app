@@ -11,38 +11,46 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
-class ReimbursementController extends Controller
+class ApprovalReimbursementController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        abort_if(Gate::denies('request reimbursement'), 403);
+        abort_if(Gate::denies('approval reimbursement'), 403);
         $title = 'Reimbursement';
         $reimbursement = Reimbursement::
         leftJoin('kategori_pengeluaran','kategori_pengeluaran.id','=','reimbursements.kategori_pengeluaran_id')
-        ->where('user_id',Auth::user()->id)
-        ->select('*','reimbursements.id as reimbursement_id')
+        ->leftJoin('users','users.id','=','reimbursements.user_id')
+        ->select('*','reimbursements.id as reimbursement_id','users.name as user_name')
         ->orderByDesc('reimbursement_id')
         ->get();
         $dataToView = ['title','reimbursement'];
-        return view('reimbursement.index',compact($dataToView));
+        return view('approval_reimbursement.index',compact($dataToView));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        abort_if(Gate::denies('request reimbursement'), 403);
-        $title = 'Reimbursement';
-        $users = User::where('departement_id','!=','')->pluck('id','name');
-        $kategori_pengeluaran = KategoriPengeluaran::all()->pluck('id','name');
-        $metode_pembayaran = MetodePembayaran::all()->pluck('id','name');
-        $dataToView = ['title','users','kategori_pengeluaran','metode_pembayaran'];
-        return view('reimbursement.create',compact($dataToView));
+    public function setujui(int $id){
+        abort_if(Gate::denies('approval reimbursement'), 403);
+        $reimbursement = Reimbursement::findOrFail($id);
+        $reimbursement->no_referensi = "A-".date("dmy").rand(10,100).$id;
+        $reimbursement->tanggal_persetujuan = date('Y-m-d');
+        $reimbursement->status_pengajuan = 1;
+        $reimbursement->save();
+        
+        return redirect('approval-reimbursement')->with('message','Reimbursement Berhasil diesetujui');
     }
+    public function ditolak(int $id){
+        abort_if(Gate::denies('approval reimbursement'), 403);
+        $reimbursement = Reimbursement::findOrFail($id);
+        $reimbursement->no_referensi = "R-".date("dmy").rand(10,100).$id;
+        $reimbursement->tanggal_persetujuan = date('Y-m-d');
+        $reimbursement->status_pengajuan = 2;
+        $reimbursement->save();
+        
+        return redirect('approval-reimbursement')->with('message','Reimbursement Berhasil ditolak');
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -90,7 +98,7 @@ class ReimbursementController extends Controller
      */
     public function show(string $id)
     {
-        abort_if(Gate::denies('request reimbursement'), 403);
+        abort_if(Gate::denies('approval reimbursement'), 403);
         $title = 'Reimbursement';
         $reimbursement = Reimbursement::
         leftJoin('kategori_pengeluaran','kategori_pengeluaran.id','=','reimbursements.kategori_pengeluaran_id')
@@ -103,7 +111,7 @@ class ReimbursementController extends Controller
         'users.name as user_name')
         ->first();
         $dataToView = ['title','reimbursement'];
-        return view('reimbursement.show',compact($dataToView));
+        return view('approval_reimbursement.show',compact($dataToView));
     }
 
     /**
@@ -115,7 +123,7 @@ class ReimbursementController extends Controller
         $title = 'Reimbursement';
         $reimbursement = Reimbursement::findOrFail($id);
         $dataToView = ['title','reimbursement'];
-        return view('reimbursement.edit',compact($dataToView));
+        return view('approval_reimbursement.edit',compact($dataToView));
         
     }
 

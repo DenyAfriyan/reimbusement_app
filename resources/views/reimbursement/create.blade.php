@@ -16,7 +16,7 @@
                           </ul>
                       </div>
                   @endif
-                <form action="{{ route('departement.store') }}" method="POST">
+                <form action="{{ route('reimbursement.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     {{-- <div class="mb-3">
                       <label for="no_referensi" class="form-label">No Referensi</label>
@@ -39,6 +39,14 @@
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label for="metode_pembayaran_id" class="form-label">Metode Pembayaran</label>
+                        <select name="metode_pembayaran_id" id="metode_pembayaran_id" class="form-control">
+                          @foreach ($metode_pembayaran  as $key => $row)
+                          <option value="{{ $row }}">{{ $key }}</option>
+                          @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="jumlah_pengeluaran" class="form-label">Jumlah Pengeluaran</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -49,7 +57,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="bukti_pengeluaran" class="form-label">Bukti Pengeluaran</label>
-                        <input class="form-control" type="file" id="bukti_pengeluaran" accept="image/png, image/gif, image/jpeg">
+                        <input class="form-control" type="file" id="bukti_pengeluaran" name="bukti_pengeluaran" accept="image/png, image/gif, image/jpeg">
                     </div>
                     <div class="mb-3">
                         <label for="notes" class="form-label">Catatan</label>

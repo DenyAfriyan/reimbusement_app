@@ -3,10 +3,6 @@
 <div class="row" style="min-height: 75vh">
     <div class="col-12">
       <div class="card mb-4">
-        <div class="card-header pb-0">
-          <a href="{{ route('reimbursement.create') }}" class="btn btn-sm btn-dark float-end m-0"><i class="fas fa-plus"></i> <span>Add {{ $title }}</span></a>
-          <h6 class="fw-bold text-dark">{{ $title }} Table</h6>
-        </div>
         <div class="card-body px-0 pt-0 pb-2">
           @if(session()->has('message'))
               <div class="alert alert-success">
@@ -19,6 +15,8 @@
                     <tr>
                         <th>No</th>
                         <th>Tanggal Pengajuan</th>
+                        <th>Nomor Pegawai</th>
+                        <th>Nama Pegawai</th>
                         <th>Jumlah Pengeluaran</th>
                         <th>Status Pengajuan</th>
                         <th>Action</th>
@@ -33,6 +31,12 @@
                       </td>
                       <td class="align-middle">
                         <span class="text-dark">{{ $row->tanggal_pengajuan }}</span>
+                      </td>
+                      <td class="align-middle">
+                        <span class="text-dark">{{ $row->no_pegawai }}</span>
+                      </td>
+                      <td class="align-middle">
+                        <span class="text-dark">{{ $row->user_name }}</span>
                       </td>
                       <td class="align-middle">
                         <span class="text-dark">{{  "Rp " . number_format($row->jumlah_pengeluaran,2,',','.') }}</span>
@@ -50,7 +54,10 @@
                       </td>
                       <td class="align-middle" style="width: 20%">
                         @can('approval reimbursement')
-                        <form action="{{ route('reimbursement.destroy', $row->id) }}" method="POST" onsubmit="return confirm('Apakah anda yakin?');" style="display: inline-block;">
+                        <a href="{{ route('approval-reimbursement.show', ['approval_reimbursement' => $row->reimbursement_id]) }}" class="btn btn-info m-0">
+                          <i class="fa fa-user-check"></i>
+                        </a>
+                        <form action="{{ route('approval-reimbursement.destroy', $row->id) }}" method="POST" onsubmit="return confirm('Apakah anda yakin?');" style="display: inline-block;">
                           <input type="hidden" name="_method" value="DELETE">
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           {{-- <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></span></button> --}}
@@ -59,9 +66,6 @@
                           </button>
                         </form>
                         @endcan
-                        <a href="{{ route('reimbursement.show', ['reimbursement' => $row->reimbursement_id]) }}" class="btn btn-info m-0">
-                          <i class="fa fa-eye"></i>
-                        </a>
                         
                       </td> 
                     </tr>

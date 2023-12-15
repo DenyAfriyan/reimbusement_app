@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('reimbursements', function (Blueprint $table) {
             $table->id();
-            $table->string('no_referensi');
-            $table->foreignId('user_id')->constrained(table: 'users');
-            $table->foreignId('kategori_pengeluaran_id')->constrained(table:'kategori_pengeluaran');
-            $table->foreignId('metode_pembayaran_id')->constrained(table:'metode_pembayaran');
-            $table->date('tanggal_pengajuan');
-            $table->double('jumlah_pengeluaran');
-            $table->string('bukti_pengeluaran');
-            $table->integer('status_pengajuan');
+            $table->string('no_referensi')->nullable();
+            $table->foreignId('user_id')->constrained(table: 'users')->nullable();
+            $table->foreignId('kategori_pengeluaran_id')->constrained(table:'kategori_pengeluaran')->nullable();
+            $table->foreignId('metode_pembayaran_id')->constrained(table:'metode_pembayaran')->nullable();
+            $table->date('tanggal_pengajuan')->nullable();
+            $table->double('jumlah_pengeluaran')->nullable();
+            $table->string('bukti_pengeluaran')->nullable();
+            $table->integer('status_pengajuan')->nullable();
             $table->text('notes')->nullable();
             $table->string('disetujui_oleh')->nullable();
             $table->date('tanggal_persetujuan')->nullable();

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApprovalReimbursementController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MasterData\DepartementController;
@@ -40,6 +41,11 @@ Route::middleware(['auth'])->group(function () {
 
     //reimbursement
     Route::resource('reimbursement',ReimbursementController::class);
+
+    //approval reimbursement
+    Route::resource('approval-reimbursement',ApprovalReimbursementController::class);
+    Route::post('approval-reimbursement-setujui/{id}',[ApprovalReimbursementController::class,'setujui'])->name('reimbursement.setujui');
+    Route::post('approval-reimbursement-ditolak/{id}',[ApprovalReimbursementController::class,'ditolak'])->name('reimbursement.ditolak');
 
     //users
     Route::resource('user-management/user',UserController::class);
