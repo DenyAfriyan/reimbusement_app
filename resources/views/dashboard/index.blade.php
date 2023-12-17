@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('content')
 <div class="row" style="min-height: 75vh">
-  {{-- <div class="row">
+  <div class="row">
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-      <a href="{{ route('permintaan-pengambilan.index') }}">
+      
       <div class="card">
         <div class="card-body p-3">
           <div class="row">
             <div class="col-9">
               <div class="numbers">
-                <p class="text-sm mb-0 text-capitalize  font-weight-bold">Request Limbah Baru</p>
+                <p class="text-sm mb-0 text-capitalize  font-weight-bold">Reimbursement Baru</p>
                 <h5 class="font-weight-bolder mb-0 " >
-                  {{ $permintaan_pengambilan_baru }}
+                  {{ $reimbusrsement_baru ?? 0 }}
                 </h5>
               </div>
             </div>
@@ -23,7 +23,6 @@
           </div>
         </div>
       </div>
-    </a>
     </div>
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
       <div class="card">
@@ -31,15 +30,15 @@
           <div class="row">
             <div class="col-8">
               <div class="numbers">
-                <p class="text-sm mb-0 text-capitalize font-weight-bold">Stok Limbah Di TPS</p>
+                <p class="text-sm mb-0 text-capitalize font-weight-bold">Semua Reimbursement</p>
                 <h5 class="font-weight-bolder mb-0">
-                  {{ $total_sisa->sisa_akhir ?? 0 }} Kg
+                  {{ $reimbusrsement_all ?? 0 }}  
                 </h5>
               </div>
             </div>
             <div class="col-4 text-end">
               <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                <i class="fas fa-warehouse"></i>
+                <i class="fas fa-envelope"></i>
               </div>
             </div>
           </div>
@@ -52,15 +51,15 @@
           <div class="row">
             <div class="col-8">
               <div class="numbers">
-                <p class="text-sm mb-0 text-capitalize font-weight-bold">Limbah Masuk</p>
+                <p class="text-sm mb-0 text-capitalize font-weight-bold">Reimbursement disetujui</p>
                 <h5 class="font-weight-bolder mb-0">
-                  {{ $limbah_masuk ?? 0 }}
+                  {{ $reimbusrsement_diterima ?? 0 }}
                 </h5>
               </div>
             </div>
             <div class="col-4 text-end">
               <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                <i class="fas fa-arrow-down"></i>
+                <i class="fas fa-check"></i>
               </div>
             </div>
           </div>
@@ -73,15 +72,15 @@
           <div class="row">
             <div class="col-8">
               <div class="numbers">
-                <p class="text-sm mb-0 text-capitalize font-weight-bold">Limbah Keluar</p>
+                <p class="text-sm mb-0 text-capitalize font-weight-bold">Reimbursement Ditolak</p>
                 <h5 class="font-weight-bolder mb-0">
-                  {{ $limbah_keluar ?? 0 }}
+                  {{ $reimbusrsement_ditolak ?? 0 }}
                 </h5>
               </div>
             </div>
             <div class="col-4 text-end">
               <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                <i class="fas fa-arrow-up"></i >
+                <i class="fas fa-circle"></i>
               </div>
             </div>
           </div>
@@ -89,7 +88,7 @@
       </div>
     </div>
   </div>
-  <div class="row justify-content-center pt-4">
+  {{-- <div class="row justify-content-center pt-4">
     <div class="col-md-12">
       <div class="card text-center">
         <div class="card-header pb-0">

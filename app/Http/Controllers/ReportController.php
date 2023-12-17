@@ -16,9 +16,8 @@ class ReportController extends Controller
 {
     public function index(){
         $title = "Report";
-        $jenis_limbah_id = JenisLimbah::all()->pluck('id','name');
 
-        return view('report.index',compact('title','jenis_limbah_id'));
+        return view('report.index',compact('title'));
     }
 
     public function datatable(Request $request){

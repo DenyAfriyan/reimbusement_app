@@ -54,6 +54,7 @@
                       </td>
                       <td class="align-middle" style="width: 20%">
                         @can('approval reimbursement')
+                        @if ($row->status_pengajuan == 0)
                         <a href="{{ route('approval-reimbursement.show', ['approval_reimbursement' => $row->reimbursement_id]) }}" class="btn btn-info m-0">
                           <i class="fa fa-user-check"></i>
                         </a>
@@ -65,6 +66,7 @@
                             <i class="fa fa-trash"></i>
                           </button>
                         </form>
+                        @endif
                         @endcan
                         
                       </td> 
