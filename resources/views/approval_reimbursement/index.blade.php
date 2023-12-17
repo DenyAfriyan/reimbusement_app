@@ -54,10 +54,10 @@
                       </td>
                       <td class="align-middle" style="width: 20%">
                         @can('approval reimbursement')
-                        @if ($row->status_pengajuan == 0)
                         <a href="{{ route('approval-reimbursement.show', ['approval_reimbursement' => $row->reimbursement_id]) }}" class="btn btn-info m-0">
                           <i class="fa fa-user-check"></i>
                         </a>
+                        @if ($row->status_pengajuan == 0)
                         <form action="{{ route('approval-reimbursement.destroy', $row->id) }}" method="POST" onsubmit="return confirm('Apakah anda yakin?');" style="display: inline-block;">
                           <input type="hidden" name="_method" value="DELETE">
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
